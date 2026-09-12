@@ -41,22 +41,61 @@ public class HauntedEscape {
         if (roomChoice == 1) {
             System.out.println("You enter the kitchen.");
             System.out.println("You find a rusty key beside the sink.");
+            System.out.println("What do you do? ");
+            System.out.println();
+            System.out.println("1. Take the key");
+            System.out.println("2. Leave the key");
+            int kitchenChoice = scanner.nextInt();
 
-            keys += 1;
-            fear += 5;
-
+            if (kitchenChoice == 1) {
+                System.out.println("You take the key.");
+                keys += 1;
+            } else if (kitchenChoice == 2) {
+                System.out.println("You leave the key.");
+                fear += 2;
+            } else {
+                System.out.println("Invalid choice.");
+            }
         } else if (roomChoice == 2) {
             System.out.println("You go upstairs.");
             System.out.println("You find an old candle on a dresser.");
-
-            candles += 1;
-            fear += 15;
-
+            System.out.println("What do you do? ");
+            System.out.println();
+            System.out.println("1. Take the candle");
+            System.out.println("2. Leave the candle");
+            int upstairsChoice = scanner.nextInt();
+            
+            if (upstairsChoice == 1) {
+                System.out.println("You take the candle.");
+                candles += 1;
+            } else if (upstairsChoice == 2) {
+                System.out.println("You leave the candle.");
+                fear += 5;
+            } else {
+                System.out.println("Invalid choice.");
+            }
         } else if (roomChoice == 3) {
             System.out.println("You enter the basement.");
-            System.out.println("Something whispers you name from the darkness.");
-
-            fear += 30;
+            System.out.println("Something whispers your name from the darkness.");
+            System.out.println();
+            System.out.println("You notice a small wooden box in the corner.");
+            System.out.println();
+            System.out.println("What do you do?");
+            System.out.println();
+            System.out.println("1. Open the box");
+            System.out.println("2. Leave the basement");
+            int basementChoice = scanner.nextInt();
+     
+            if (basementChoice == 1) {
+                System.out.println("You found a key.");
+                keys += 1;
+                fear += 20;
+            } else if (basementChoice == 2) {
+                System.out.println("You leave the basement.");
+                fear += 10;
+            } else {
+                System.out.println("Invalid choice.");
+            }
 
         } else {
             System.out.println("Invalid choice.");
@@ -64,6 +103,15 @@ public class HauntedEscape {
 
         System.out.println();
         System.out.println("CURRENT STATUS");
+       
+        if (fear >= 100) {
+            System.out.println();
+            System.out.println("Your fear has reached 100. You are too terrified to escape.");
+        } else if (keys >= 1) {
+            System.out.println("You found a key. You may be one step closer to escaping.");
+        } else {
+            System.out.println("You still need to find a key.");
+        }
         System.out.println();
         System.out.println("Keys: " + keys);
         System.out.println("Candles: " + candles);
