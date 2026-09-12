@@ -12,19 +12,41 @@ public class HauntedEscape {
         System.out.println();
         System.out.println("Escape the mansion before it's too late!");
         System.out.println();
+
         System.out.println("What is your name? ");
         String playerName = scanner.nextLine();
         System.out.println();
         int fear = 0;
         int keys = 0;
         int candles = 1;
-        System.out.println("Welcome to Blackwood Mansion, " +playerName + "!");
+        System.out.println("Welcome to Blackwood Mansion, " + playerName + "!");
         System.out.println();
         System.out.println("STARTING INVENTORY");
         System.out.println();
         System.out.println("Keys: " + keys);
         System.out.println("Candles: " + candles);
         System.out.println("Fear: " + fear + "/100");
+
+        System.out.println();
+        System.out.println("Where would you like to go?");
+        System.out.println();
+        System.out.println("1. Kitchen");
+        System.out.println("2. Upstairs");
+        System.out.println("3. Basement");
+        System.out.println();
+        System.out.println("Enter your choice: ");
+        int roomChoice = scanner.nextInt();
+        System.out.println();
+
+        if (roomChoice == 1) {
+            System.out.println("You enter the kitchen.");
+        } else if (roomChoice == 2) {
+            System.out.println("You go upstairs.");
+        } else if (roomChoice == 3) {
+            System.out.println("You enter the basement.");
+        } else {
+            System.out.println("Invalid choice.");
+        }
 
         scanner.close();
     }
