@@ -44,6 +44,21 @@ namespace FishingPractice
             {
                 Console.WriteLine("You don't have enough coins to buy bait!");
             }
+
+            CatchFish(fishCaught);
+            fishCaught = CatchFish(fishCaught);
+            Console.WriteLine($"Back in Main: {fishCaught}");
+        }
+        // Handle catching a fish
+        static int CatchFish(int fishCaught)
+        {
+            Console.WriteLine("You caught a fish!");
+
+            fishCaught += 1;
+
+            Console.WriteLine($"Total fish caught: {fishCaught}");
+
+            return fishCaught;
         }
     }
 }
