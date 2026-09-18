@@ -15,5 +15,7 @@ public class GhostFearMeter {
         } else {
             System.out.println(playerName + " bravely continues through the mansion!");
         }
+
+        scanner.close();
     }
 }
