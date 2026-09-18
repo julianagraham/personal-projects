@@ -11,6 +11,7 @@ namespace FishingPractice
             int rodLevel = 1;
             bool hasBait = false;
             int baitPrice = 5;
+            int fishValue = 3;
 
             // Display the player's starting stats
             Console.WriteLine("UNDERWATER FISHING");
@@ -45,20 +46,33 @@ namespace FishingPractice
                 Console.WriteLine("You don't have enough coins to buy bait!");
             }
 
-            CatchFish(fishCaught);
-            fishCaught = CatchFish(fishCaught);
+            fishCaught = CatchFish(fishCaught, fishValue);
             Console.WriteLine($"Back in Main: {fishCaught}");
+
+            coins = GiveCoins(coins, fishValue);
+            Console.WriteLine($"Back in Main: {coins}");
         }
         // Handle catching a fish
-        static int CatchFish(int fishCaught)
+        static int CatchFish(int fishCaught, int fishValue)
         {
             Console.WriteLine("You caught a fish!");
+            Console.WriteLine($"This fish is worth {fishValue} coins!");
 
             fishCaught += 1;
 
             Console.WriteLine($"Total fish caught: {fishCaught}");
 
             return fishCaught;
+        }
+        // Add the fish reward to the player's coins
+        static int GiveCoins(int coins, int fishValue)
+        {
+            coins += fishValue;
+
+            Console.WriteLine($"{fishValue} coins have been rewarded to you!");
+            Console.WriteLine($"Total coins: {coins}");
+
+            return coins;
         }
     }
 }
