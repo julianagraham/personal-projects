@@ -49,23 +49,46 @@ namespace PotionDungeon
                 Console.WriteLine("Sorry, you need more gold.");
             }
 
-            // Handle buying a potion
-            static int BuyPotion(int potions, int potionPrice)
-            {
-                potions += 1;
-                Console.WriteLine($"You bought a potion for {potionPrice} coins!");
-                Console.WriteLine($"You now have {potions} potions!");
+            // Check if player is ready to fight a monster
+            Console.WriteLine("A monster appears!");
 
-                return potions;
-            }
-            // Subtract the potion cost from the player's gold
-            static int SpendGold(int gold, int potionPrice)
+            if (hasSword)
             {
-                gold -= potionPrice;
-                Console.WriteLine($"You have {gold} gold left!");
+                Console.WriteLine("You are ready to fight the monster!");
 
-                return gold;
+                monsterHealth = AttackMonster(monsterHealth, swordDamage);
+                Console.WriteLine($"Back in Main, Monster health: {monsterHealth} ");
+            } else
+            {
+                Console.WriteLine("Sorry, your sword is not ready yet!");
             }
+        }
+         // Handle buying a potion
+        static int BuyPotion(int potions, int potionPrice)
+        {
+             potions += 1;
+            Console.WriteLine($"You bought a potion for {potionPrice} coins!");
+            Console.WriteLine($"You now have {potions} potions!");
+
+            return potions;
+        }
+        // Subtract the potion cost from the player's gold
+        static int SpendGold(int gold, int potionPrice)
+        {
+            gold -= potionPrice;
+            Console.WriteLine($"You have {gold} gold left!");
+
+            return gold;
+        }
+
+        // Handle attacking the monster
+        static int AttackMonster(int monsterHealth, int swordDamage)
+        {
+            monsterHealth -= swordDamage;
+            Console.WriteLine($"You attack the monster for {swordDamage} damage");
+            Console.WriteLine($"Monster health: {monsterHealth}");
+
+            return monsterHealth;
         }
     }
 }
