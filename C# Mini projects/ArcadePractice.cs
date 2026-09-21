@@ -1,3 +1,5 @@
+using System.Runtime.ConstrainedExecution;
+
 namespace ArcadePractice
 {
     class Program
@@ -12,6 +14,9 @@ namespace ArcadePractice
             int tickets = 0;
             int ticketsEarnedPerGame = 12;
             bool gameWorking = true;
+            int prizeCost = 10;
+            int prizesPurchased = 0;
+            bool canAffordPrize = false;
 
             //Display player's starting stats
             Console.WriteLine("PIXEL ARCADE");
@@ -47,6 +52,8 @@ namespace ArcadePractice
 
                 tickets = EarnTickets(ticketsEarnedPerGame, tickets);
                 Console.WriteLine($"Back in main: {tickets} tickets");
+
+                canAffordPrize = CanAffordPrize(tickets, prizeCost);
             } else if (credits == 0 && gameWorking)
             {
                 Console.WriteLine("Sorry, you need more credits!");
@@ -56,6 +63,21 @@ namespace ArcadePractice
             } else
             {
                 Console.WriteLine("Sorry, you don't have enough credits and the game is not working.");
+            }
+
+            // Check if player can afford a prize
+            if (canAffordPrize)
+            {
+                Console.WriteLine("You can afford the prize!");
+
+                tickets = SpendTickets(tickets, prizeCost);
+                Console.WriteLine($"Back in main, tickets: {tickets}");
+
+                prizesPurchased = PrizeGained(prizesPurchased);
+                Console.WriteLine($"Back in main, prizes: {prizesPurchased}");
+            } else
+            {
+                Console.WriteLine("Sorry, you don't have enough tickets for the prize.");
             }
         }
 
@@ -98,6 +120,39 @@ namespace ArcadePractice
             Console.WriteLine($"You now have: {tickets} tickets.");
 
             return tickets;
+        }
+
+        // Check if player can afford prize
+        static bool CanAffordPrize(int tickets, int prizeCost)
+        {
+            
+            if (tickets >= prizeCost)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        // Handle buying a prize
+        static int SpendTickets(int tickets, int prizeCost)
+        {
+            tickets -= prizeCost;
+
+            Console.WriteLine($"You spent {prizeCost} tickets. You now have {tickets} tickets remaining.");
+
+            return tickets;
+        }
+
+        // Add purchased prize to player's total
+        static int PrizeGained(int prizesPurchased)
+        {
+            prizesPurchased += 1;
+
+            Console.WriteLine($"You have purchased {prizesPurchased} prizes!");
+
+            return prizesPurchased;
         }
     }
 }
