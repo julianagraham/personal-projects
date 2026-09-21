@@ -17,6 +17,7 @@ namespace ArcadePractice
             int prizeCost = 10;
             int prizesPurchased = 0;
             bool canAffordPrize = false;
+            bool canBuyCredit = false;
 
             //Display player's starting stats
             Console.WriteLine("PIXEL ARCADE");
@@ -74,11 +75,23 @@ namespace ArcadePractice
                 Console.WriteLine($"Back in main, tickets: {tickets}");
 
                 prizesPurchased = PrizeGained(prizesPurchased);
-                Console.WriteLine($"Back in main, prizes: {prizesPurchased}");
+                
             } else
             {
                 Console.WriteLine("Sorry, you don't have enough tickets for the prize.");
             }
+
+            // Check if player can afford another credit
+            canBuyCredit = CanBuyCredit(coins, creditPrice);
+
+            if (canBuyCredit)
+            {
+                Console.WriteLine("You can afford another credit!");
+            } else
+            {
+                Console.WriteLine("Sorry, you don't have enough coins for another credit.");
+            }
+
         }
 
         // Handle buying a game credit
@@ -153,6 +166,18 @@ namespace ArcadePractice
             Console.WriteLine($"You have purchased {prizesPurchased} prizes!");
 
             return prizesPurchased;
+        }
+
+        // Check if player can afford another credit
+        static bool CanBuyCredit(int coins, int creditPrice)
+        {
+            if (coins >= creditPrice)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
